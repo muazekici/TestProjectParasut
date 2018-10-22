@@ -1,0 +1,82 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "com.muaz.testapp.testproject"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+
+
+        debug{
+            buildConfigField "String","AUTH_CLIENT_ID","\"1249cf4d43334a94bff957831658d73685d89c685fd0d74170fd7a7d8f8edbe9\""
+            buildConfigField "String","AUTH_CLIENT_SECRET","\"8fc293529825fc27e2e1fbb3322e59b8673ceacfec034dc0a4e45ca891c6b819\""
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String","AUTH_CLIENT_ID","\"1249cf4d43334a94bff957831658d73685d89c685fd0d74170fd7a7d8f8edbe9\""
+            buildConfigField "String","AUTH_CLIENT_SECRET","\"8fc293529825fc27e2e1fbb3322e59b8673ceacfec034dc0a4e45ca891c6b819\""
+        }
+    }
+
+    sourceSets {
+        main {
+            res.srcDirs =
+                    [
+                            'src/main/res/layout/activities',
+                            'src/main/res/layout/baselayouts',
+                            'src/main/res/layout/dialogs',
+                            'src/main/res/layout/fragments',
+                            'src/main/res/layout/rowitems',
+                            'src/main/res/layout/utillayouts',
+                            'src/main/res/layout',
+                            'src/main/res'
+                    ]
+        }
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:design:$rootProject.supportLibraryVersion"
+
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+
+
+    implementation "com.google.dagger:dagger:$rootProject.dagger2Version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
+    compileOnly 'javax.annotation:jsr250-api:1.0'
+    implementation 'javax.inject:javax.inject:1'
+
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2Version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+    implementation 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
+
+
+
+    implementation "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
+
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+
+    implementation "com.squareup.okhttp3:logging-interceptor:3.8.0"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
